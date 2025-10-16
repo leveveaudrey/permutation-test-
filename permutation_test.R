@@ -3,20 +3,19 @@
 # Define parameters
 
 ## load file 
-file=read.csv(file.choose(),h=T,sep=";",dec=".") 
+file=read.csv("comparison of score PHE.csv",h=T,sep=";",dec=".") 
 attach(file)
 ## title of your analysis
 analysis_title="test"
-## define the factor tested (for exampl "sex")
-factor_tested=Cluster
-## define the parameter tested (for exampl "size")
-pheno=P..Pn.Ps.
-## define the levels of the two group (for exampl "male" vs "female")
-gp_1="Europe"
-gp_2="Selfer"
+## define the factor tested
+factor_tested=Variation.PEG
+## define the parameter tested 
+pheno=PHE.Genes
+## define the levels of the two group 
+gp_1="Overused"
+gp_2="equallyused"
 ## define the number of replications
-replications=10000
-
+replications=1000
 # test (don't change nothing!)
 
 pdf(paste(analysis_title,"_permutation.pdf"))
@@ -102,4 +101,5 @@ write.table(summary, paste(analysis_title,"_mean_permutation_test.csv"), sep=";"
 summary2=as.data.frame(summary2)
 colnames(summary2)=c("first_group","second_group","Median_first_group","Median_second_group","Median_delta_group","2.5_Median_permutations","Median_Median_permutations","97.5_Median_permutations","Pvalue")
 write.table(summary2, paste(analysis_title,"_median_permutation_test.csv"), sep=";", quote= FALSE)
+
 dev.off()
